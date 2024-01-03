@@ -13,11 +13,7 @@ $TTL	604800
 ns1.x13n.in.                IN  A   {{config["dns_listener_ip"]}}
 ;;
 {% for record in config["records"] %}
-{%- if record["type"] == "CNAME" -%}
-{{record["fqdn"]}} IN CNAME {{record["alias"]}}
-{%- elif record["type"] == "A" -%}
-{{record["fqdn"]}} IN A {{record["ip"]}}
-{%- else -%}
-{{record["reverse_ip"]}} IN PTR {{record["fqdn"]}}
-{% endif %}
+{%- if record["type"] == "CNAME" -%}{{record["fqdn"]}} IN CNAME {{record["alias"]}}{% endif %}
+{%- if record["type"] == "A" -%}{{record["fqdn"]}} IN A {{record["ip"]}}{% endif %}
+{%- if record["type"] == "PTR" -%}{{record["reverse_ip"]}} IN PTR {{record["fqdn"]}}{% endif %}
 {% endfor %}
