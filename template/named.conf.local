@@ -1,0 +1,6 @@
+{%- for config in dns_records -%}
+zone "{{config['zone']}}" {
+	type primary;
+	file "/etc/bind/zones/{{config['zone']}}";
+};
+{% endfor %}

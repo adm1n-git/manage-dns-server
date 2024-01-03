@@ -1,0 +1,29 @@
+[
+    {
+        "zone": "x13n.in",
+        "dns_listener_ip": "10.13.0.253",
+        "records": [
+            {
+                "type": "CNAME",
+                "fqdn": "netops-system.x13n.in.",
+                "alias": "www.netops-system.x13n.in."
+            },
+            {
+                "type": "A",
+                "fqdn": "www.netops-system.x13n.in.",
+                "ip": "10.13.0.254"
+            }
+        ]
+    },
+    {
+        "zone": "13.10.in-addr.arpa",
+        "dns_listener_ip": "10.13.0.253",
+        "records": [
+            {
+                "type": "PTR",
+                "fqdn": "netops-system.x13n.in.",
+                "reverse_ip": "254.0"
+            }
+        ]
+    }
+]

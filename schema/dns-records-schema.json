@@ -1,0 +1,172 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "zone": {
+                "type": "string"
+            },
+            "dns_listener_ip": {
+                "$ref": "#/$defs/IP"
+            }
+        },
+        "required": [
+            "zone",
+            "dns_listener_ip"
+        ],
+        "if": {
+            "properties": {
+                "zone": {
+                    "type": "string",
+                    "pattern": ".in-addr.arpa$"
+                }
+            }
+        },
+        "then": {
+            "properties": {
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/PTR"
+                            }
+                        ]
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "records"
+            ]
+        },
+        "else": {
+            "properties": {
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/CNAME"
+                            },
+                            {
+                                "$ref": "#/$defs/A"
+                            }
+                        ]
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "records"
+            ]
+        },
+        "unevaluatedProperties": false
+    },
+    "uniqueItems": true,
+    "$defs": {
+        "PTR": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "PTR"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "PTR"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "fqdn": {
+                        "type": "string"
+                    },
+                    "reverse_ip": {
+                        "$ref": "#/$defs/IP"
+                    }
+                },
+                "required": [
+                    "fqdn",
+                    "reverse_ip"
+                ]
+            },
+            "unevaluatedProperties": false
+        },
+        "CNAME": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "CNAME"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "CNAME"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "fqdn": {
+                        "type": "string"
+                    },
+                    "alias": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "fqdn",
+                    "alias"
+                ]
+            },
+            "unevaluatedProperties": false
+        },
+        "A": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "A"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "A"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "fqdn": {
+                        "type": "string"
+                    },
+                    "ip": {
+                        "$ref": "#/$defs/IP"
+                    }
+                },
+                "required": [
+                    "fqdn",
+                    "ip"
+                ]
+            },
+            "unevaluatedProperties": false
+        },
+        "IP": {
+            "type": "string",
+            "pattern": "^([0-9]{1,3}\\.?){1,4}$"
+        }
+    }
+}
