@@ -30,6 +30,9 @@
                         "oneOf": [
                             {
                                 "$ref": "#/$defs/PTR"
+                            },
+                            {
+                                "$ref": "#/$defs/A"
                             }
                         ]
                     },
