@@ -46,4 +46,7 @@ if "__main__" in __name__:
     if os.geteuid() != 0:
         logger.critical("Please execute a script with root privileges.");
     else:
+        if os.path.isfile("requirements.txt"):
+            logger.info("Download the required libraries and install them on the system.");
+            os.system("pip install -r requirements.txt");
         main();
