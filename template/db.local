@@ -2,15 +2,15 @@
 ;; BIND data file for zone {{config["zone"]}}.
 ;;
 $TTL	604800
-@	IN	SOA	ns1.x13n.in. adm1n.x13n.in. (
+@	IN	SOA	ns1.x13-networks.org. adm1n.x13-networks.org. (
 			      1		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;;
-                            IN  NS  ns1.x13n.in.
-ns1.x13n.in.                IN  A   {{config["dns_listener_ip"]}}
+                            IN  NS  ns1.x13-networks.org.
+ns1.x13-networks.org.                IN  A   {{config["dns_listener_ip"]}}
 ;;
 {% for record in config["records"] %}
 {%- if record["type"] == "CNAME" -%}{{record["fqdn"]}} IN CNAME {{record["alias"]}}{% endif %}
