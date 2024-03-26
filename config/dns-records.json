@@ -1,16 +1,16 @@
 [
     {
-        "zone": "x13n.in",
+        "zone": "x13-networks.org",
         "dns_listener_ip": "10.13.0.253",
         "records": [
             {
                 "type": "CNAME",
-                "fqdn": "netops-system.x13n.in.",
-                "alias": "www.netops-system.x13n.in."
+                "fqdn": "netops-system.x13-networks.org.",
+                "alias": "www.netops-system.x13-networks.org."
             },
             {
                 "type": "A",
-                "fqdn": "www.netops-system.x13n.in.",
+                "fqdn": "www.netops-system.x13-networks.org.",
                 "ip": "10.13.0.254"
             }
         ]
@@ -21,7 +21,7 @@
         "records": [
             {
                 "type": "PTR",
-                "fqdn": "netops-system.x13n.in.",
+                "fqdn": "netops-system.x13-networks.org.",
                 "reverse_ip": "254.0"
             }
         ]

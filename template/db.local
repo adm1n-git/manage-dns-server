@@ -9,8 +9,8 @@ $TTL	604800
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;;
-                            IN  NS  ns1.x13-networks.org.
-ns1.x13-networks.org.                IN  A   {{config["dns_listener_ip"]}}
+@ IN NS ns1.x13-networks.org.
+ns1.x13-networks.org. IN A {{config["dns_listener_ip"]}}
 ;;
 {% for record in config["records"] %}
 {%- if record["type"] == "CNAME" -%}{{record["fqdn"]}} IN CNAME {{record["alias"]}}{% endif %}
